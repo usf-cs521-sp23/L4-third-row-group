@@ -18,6 +18,30 @@ int isValidWord(char word[]) {
     }
     return 0; 
 }
+/*
+Turn the printf stuff to be red
+*/
+void red(){
+    printf("\033[0;31m");
+}
+/*
+reset the color (default)
+*/
+void reset(){
+    printf("\033[0m");
+}
+/*
+Turn the printf stuff to be yellow
+*/
+void yellow(){
+    printf("\033[0;33m");
+}
+/*
+Turn the printf stuff to be green
+*/
+void green(){
+    printf("\033[0;32m");
+}
 
 void play(char word_list[][word_length + 2], int size, char player[]) {
     int play_times = 1;
@@ -70,7 +94,23 @@ void play(char word_list[][word_length + 2], int size, char player[]) {
             // Taking the guesses
             char guess[100];
             printf("\nEnter your guess #%d (%d time(s) left): ", i, 6-i);
-            scanf("%s", guess);
+            // Coloring the guesses
+            scanf("%s",guess);
+            printf("\nCheck the guess:\n");
+            printf("                                      ");
+            for(int k = 0; k < word_length; ++k){
+                if (target[k] == guess [k]){
+                    green();
+                    printf("%c", guess[k]);
+                    reset();
+                }else if (strchr(target, guess[k]) != NULL) {
+                    yellow();
+                    printf("%c", guess[k]);
+                    reset();
+                }else {
+                    printf("%c", guess[k]);
+                }
+            }
 
             // Checking if the guess is valid (no uppercase, special characters and right length)
             if (isValidWord(guess) == 1 || strlen(guess) != word_length) {
@@ -80,17 +120,23 @@ void play(char word_list[][word_length + 2], int size, char player[]) {
             }
             
             // Printing out whether the guess contains correct, out of place, wrong characters
-            printf("                                      ");
+            printf("\n                                      ");
             for (int j = 0; j < word_length; ++j) {
                 bool correct_guess = false;
                 if (target[j] == guess[j]) {
+                    green(); // Let the word to be colored in green
                     printf("o");
+                    reset();
                     correct_guess = true;
                 } else if (strchr(target, guess[j]) != NULL) {
+                    yellow(); // Let the word to be colored in yellow
                     printf("-");
+                    reset();
                     correct_guess = true;
                 } else {
+                    red(); // Let the word to be colored in red
                     printf("x");
+                    reset();
                 }
 
                 // Appending to the used words list
