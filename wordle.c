@@ -157,9 +157,26 @@ void play(char word_list[][word_length + 2], int size, char player[]) {
             }
             puts("");
 
+            
+            
             // Comparing the guess to the target
             if (strncmp(target, guess, word_length) == 0) {
-                printf("WINNER WINNER CHICKEN DINNER, %s!!!!\n\n", player);
+                
+                printf("         ________________\n");
+                printf("         < WINNER WINNER CHICKEN DINNER! %s >\n",player);
+                printf("          ----------------\n");
+                printf("                     \\\n");
+                printf("                      \\    .-._   _ _ _ _ _ _ _ _\n");
+                printf("                .-''-.__.-'00  '-' ' ' ' ' ' ' ' '-.\n");
+                printf("                '.___ '    .   .--_'-' '-' '-' _'-' '._\n");
+                printf("                 V: V 'vv-'   '_   '.       .'  _..' '.'.\n");
+                printf("                   '=.____.=_.--'   :_.__.__:_   '.   : :\n");
+                printf("                           (((____.-'        '-.  /   : :\n");
+                printf("                                             (((-'\\ .' /\n");
+                printf("                                           _____..'  .'\n");
+                printf("                                          '-._____.-'\n");
+
+                
                 won = true;
                 break;
             }
